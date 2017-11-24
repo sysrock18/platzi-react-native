@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
-  View
+  View,
+  ScrollView
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ArtistBox from './ArtistBox';
@@ -22,11 +23,15 @@ export default class App extends Component<{}> {
       likes: 51,
       comments: 23
     };
-    
+
     return (
-      <View style={styles.container}>
-        <ArtistBox artist={artist} />
-      </View>
+      <ScrollView style={styles.container}>
+      {
+        Array(8).fill(artist).map(artist => {
+          return <ArtistBox artist={artist} />
+        })
+      }
+      </ScrollView>
     );
   }
 }
