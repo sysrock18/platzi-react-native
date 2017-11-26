@@ -1,42 +1,22 @@
 import React, { Component } from 'react';
-import {
-  View,
-  StyleSheet
-} from 'react-native';
-import ArtistList from './ArtistList';
+import { Scene, Router, Stack } from 'react-native-router-flux';
 
-import getArtists from './api';
+import Home from './Home';
+import ArtistDetail from './ArtistDetail';
 
 export default class App extends Component<{}> {
   constructor(props) {
     super(props);
-
-    this.state = {
-      artists: []
-    }
-  }
-
-  componentDidMount() {
-    getArtists()
-      .then(data => this.setState({
-        artists: data
-      }));
   }
 
   render() {
-    const artists = this.state.artists;
-
     return (
-      <View style={styles.container}> 
-        <ArtistList artists={artists} />
-      </View>
+      <Router>
+        <Stack key="root">
+          <Scene key="home" component={Home} hideNavBar={true} />
+          <Scene key="artistDetail" component={ArtistDetail} />
+        </Stack>
+      </Router>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'lightgray'
-  }
-});
