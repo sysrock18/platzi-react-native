@@ -5,16 +5,26 @@ import {
 } from 'react-native';
 import ArtistList from './ArtistList';
 
-export default class App extends Component<{}> {
-  render() {
-    const artist = {
-      image: 'http://www.gamba.fm/wp/wp-content/uploads/2017/07/Linkin-park.jpg',
-      name: 'Linkin Park',
-      likes: 51,
-      comments: 23
-    };
+import getArtists from './api';
 
-    const artists = Array(30).fill(artist);
+export default class App extends Component<{}> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      artists: []
+    }
+  }
+
+  componentDidMount() {
+    getArtists()
+      .then(data => this.setState({
+        artists: data
+      }));
+  }
+
+  render() {
+    const artists = this.state.artists;
 
     return (
       <View style={styles.container}> 
