@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {
   View,
-  StyleSheet
+  StyleSheet,
+  ActivityIndicator,
+  Platform
 } from 'react-native';
 import ArtistList from './ArtistList';
 
@@ -12,7 +14,7 @@ export default class Home extends Component<{}> {
     super(props);
 
     this.state = {
-      artists: []
+      artists: null
     }
   }
 
@@ -28,7 +30,10 @@ export default class Home extends Component<{}> {
 
     return (
       <View style={styles.container}> 
-        <ArtistList artists={artists} />
+        { artists ? 
+          <ArtistList artists={artists} /> :
+          <ActivityIndicator />
+        }
       </View>
     );
   }
@@ -37,6 +42,10 @@ export default class Home extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'lightgray'
+    backgroundColor: 'lightgray',
+    paddingTop: Platform.select({
+      ios: 30,
+      android: 10
+    })
   }
 });

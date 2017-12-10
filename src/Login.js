@@ -3,7 +3,8 @@ import {
   View,
   StyleSheet,
   Text,
-  Button
+  Button,
+  Image
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import FBSDK, { LoginButton, AccessToken } from 'react-native-fbsdk';
@@ -54,6 +55,11 @@ export default class Login extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
+
+        <View style={styles.bgContainer}>
+          <Image source={require('./background.jpg')} style={styles.bgImage} />
+        </View>
+
         <Text style={styles.welcome}>Bienvenidos a SimonMusic</Text>
 
         <LoginButton
@@ -76,5 +82,18 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '500',
     marginBottom: 20
-  }
+  },
+  bgContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
+  },
+  bgImage: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'stretch'
+  },
 });

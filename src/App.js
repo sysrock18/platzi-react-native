@@ -20,7 +20,7 @@ export default class App extends Component<{}> {
 	          initial={true}
 	        />
           <Scene key="home" component={Home} hideNavBar={true} />
-          <Scene key="artistDetail" component={ArtistDetail} />
+          <Scene key="artistDetail" component={ArtistDetail} title="Comentarios" />
         </Stack>
       </Router>
     );
