@@ -39,7 +39,6 @@ export default class ArtistBox extends Component<{}> {
 
   getArtistRef = () => {
     const { id } = this.props.artist;
-
     return firebaseDatabase.ref(`artist/${id}`);
   }
 
